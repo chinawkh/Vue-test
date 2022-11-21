@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>first vue</title>
+        <!-- 引入 vue -->
+        <script type="text/javascript" src="js/vue.js"></script>
+        <script type="text/javascript">
+            Vue.config.productionTip = false
+        </script>
+
+    </head>
+    <body>
+
+        <div id="first">
+            <!-- 第三步：使用组件-->
+            <Xuexiao></Xuexiao>
+            <Xuesheng></Xuesheng>
+            <h1>{{ msg }}</h1>
+        </div>
+
+        <div id="second">
+            <hello></hello>
+        </div>
+        <script type="text/javascript">
+            <!-- 组件的使用 -->
+            <!-- Vue.extend 使用; 第一步：创建组件-->
+            const school = Vue.extend({
+                template: `
+                  <div>
+                    <h2>学校名称：{{schoolName}}</h2>
+                    <h2>学校地址：{{address}}</h2>
+                    <button @click="showName">点击提示</button>
+                  </div>
+                `,
+                data() {
+                    return {
+                        schoolName: 'ncut',
+                        address: '石景山'
+                    }
+                },
+                methods: {
+                    showName() {
+                        alert(this.schoolName)
+                    }
+                }
+            })
+            const student = Vue.extend({
+                template: `
+                  <div>
+                      <h2>学生姓名：{{stuName}}</h2>
+                      <h2>年龄：{{age}}</h2>
+                  </div>
+                `,
+                data() {
+                    return {
+                        stuName: '坤坤',
+                        age: 25
+                    }
+                }
+            })
+
+            const hello = Vue.extend({
+                template: `
+                    <div>
+                        <h2>hello, hi! {{ this.name }}</h2>
+                    </div>
+                `,
+                data() {
+                    return {
+                        name: 'tom'
+                    }
+                }
+            })
+
+            // 第二步：注册组件 （局部注册）
+            new Vue({
+                el: '#first',
+                data: {
+                    msg: 'hello, vue!'
+                },
+                components: {
+                    xuexiao: school,
+                    xuesheng: student
+                }
+            })
+            // 第二步：全局注册组件
+            Vue.component('hello', hello)
+
+            new Vue({
+                el: '#second'
+            })
+        </script>
+        <script type="text/javascript">
+            <!--创建Vue实例-->
+
+
+        </script>
+
+
+    </body>
+</html>

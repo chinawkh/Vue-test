@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>first vue</title>
+        <!-- 引入 vue -->
+        <script type="text/javascript" src="js/vue.js"></script>
+        <script type="text/javascript">
+            Vue.config.productionTip = false
+        </script>
+    </head>
+    <body>
+    <!--容器-->
+    <div id="root1">
+        <h1> hello,{{message}}</h1>
+    </div>
+    <div id="app-2">
+        <!-- v-bind属性的使用； message 不是固定的 -->
+        <span v-bind:title="message1">
+            鼠标悬停
+        </span>
+    </div>
+
+    <div id="three">
+        <p v-if="seen">now, you can see me</p>
+    </div>
+
+    <div id="four">
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+    </div>
+
+    <div id="five">
+        <p>{{ message }}</p>
+        <!-- v-on 是Vue的事件监听器， click是一个点击事件-->
+        <button v-on:click="reverseMessage">反转消息</button>
+    </div>
+
+    <div id="six">
+        <!-- 实现表单输入和应用状态之间的双向绑定 -->
+        <p>{{ message }}</p>
+        <input v-model="message">
+    </div>
+
+    <script type="text/javascript">
+        <!--创建Vue实例-->
+        let sixth = new Vue({
+            el: '#six',
+            data: {
+                message: 'hello v-modle= !'
+            }
+        })
+
+        let fifth = new Vue({
+            el: '#five',
+            data: {
+                message: 'hello Vue.js!'
+            },
+            methods: {
+                reverseMessage: function () {
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        })
+
+        const x = new Vue({
+            el: '#root1',
+            data: {
+                message: 'wangkanghong'
+            }
+        })
+
+        const two = new Vue({
+            el: '#app-2',
+            data: {
+                message1: '页面：' + new Date().toLocaleString()
+            }
+        })
+
+        const thirty = new Vue({
+            el: '#three',
+            data: {
+                seen: true
+            }
+        })
+
+        let fourth = new Vue({
+            el: '#four',
+            data: {
+                todos: [
+                    {text: 'Java'},
+                    {text: 'JavaScript'},
+                    {text: 'Python'}
+                ]
+            }
+        })
+
+
+    </script>
+
+    </body>
+</html>
