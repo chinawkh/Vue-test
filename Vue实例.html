@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vue实例</title>
+        <!-- 引入 vue -->
+        <script type="text/javascript" src="js/vue.js"></script>
+        <script type="text/javascript">
+            Vue.config.productionTip = false
+        </script>
+
+    </head>
+    <body>
+        <div id="first">
+            <p>{{ foo }}</p>
+            <button @click="foo = 'baz'">change it</button>
+        </div>
+        <script type="text/javascript">
+            <!-- vm.$data === data1  => true -->
+            var data1 = {a: 1}
+            let vm = new Vue({
+                data: data1
+            })
+
+            var obj = {
+                foo: 'bar'
+            }
+            Object.freeze(obj)
+
+            let vm1 = new Vue({
+                el: '#first',
+                data: obj
+            })
+
+
+        </script>
+
+    </body>
+</html>

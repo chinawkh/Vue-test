@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vue实例生命周期钩子</title>
+        <!-- 引入 vue -->
+        <script type="text/javascript" src="js/vue.js"></script>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+            Vue.config.productionTip = false
+        </script>
+        <script type="text/javascript">
+            <!-- created 钩子可以用来在一个实例被创建之后执行代码： -->
+            new Vue({
+                data: {
+                    a: 1
+                },
+                created: function () {
+                  //  生命周期钩子的 this 上下文指向调用它的 Vue 实例。
+                  //   `this` 指向 vm 实例
+                    console.log('a is: ' + this.a)
+                }
+            })
+        </script>
+    </body>
+</html>

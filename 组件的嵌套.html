@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>组件</title>
+        <!-- 引入 vue -->
+        <script type="text/javascript" src="js/vue.js"></script>
+        <script type="text/javascript">
+            Vue.config.productionTip = false
+        </script>
+
+    </head>
+    <body>
+
+        <div id="first">
+            <!-- 第三步：使用组件-->
+            <!-- 这种方法必须使用全局组件注册 -->
+            <ol>
+                <todoone1
+                    v-for="item in groceryList"
+                    v-bind:todo="item"
+                    v-bind:key="item.id"
+                ></todoone1>
+
+            </ol>
+        </div>
+
+
+        <script type="text/javascript">
+            <!-- 组件的使用 -->
+            // Vue.extend 使用;
+            // 第一步：创建组件
+            const todoone = Vue.extend({
+                props: ['todo'],
+                template: `
+                  <li>{{ todo.id }}：{{ todo.text}}</li>
+                `
+            })
+
+            // 第二步：注册组件 （全局注册）
+            Vue.component('todoone1', todoone)
+
+            let one = new Vue({
+                el: '#first',
+                data: {
+                    groceryList: [
+                        {id: 0, text: '素菜'},
+                        {id: 1, text: '水果'},
+                        {id: 2, text: '电脑'}
+                    ]
+                }
+            })
+
+        </script>
+
+    </body>
+</html>

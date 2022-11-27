@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vue条件渲染</title>
+        <!-- 引入 vue -->
+        <script type="text/javascript" src="js/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+            Vue.config.productionTip = false
+        </script>
+        <div id="one">
+            <h1 v-if="vuefront">vue front</h1>
+            <h2 v-else>oh!</h2>
+            <button v-on:click="change">点击</button>
+        </div>
+
+        <div id="two">
+            <template v-if="ok">
+                <h1>Title</h1>
+                <p>Paragraph 1</p>
+                <p>Paragraph 2</p>
+            </template>
+            <button v-on:click="change">点击</button>
+        </div>
+
+        <div id="three">
+            <li v-for="n in evenNumbers">{{ n }}</li>
+        </div>
+        <div id="four">
+            <ul v-for="set in sets">
+                <li>===</li>
+                <li v-for="n in even(set)">{{ n }}</li>
+            </ul>
+        </div>
+
+        <script type="text/javascript">
+            new Vue({
+                el: '#three',
+                data: {
+                    numbers: [ 1, 2, 3, 4, 5 ]
+                },
+                computed: {
+                    evenNumbers: function () {
+                        return this.numbers.filter(function (number) {
+                            return number % 2 === 0
+                        })
+                    }
+                }
+            })
+            new Vue({
+                el: '#four',
+                data: {
+                    sets: [[ 1, 2, 3, 4, 5 ], [6, 7, 8, 9, 10]]
+                },
+                methods: {
+                    even: function (numbers) {
+                        return numbers.filter(function (number) {
+                            return number % 2 === 0
+                        })
+                    }
+                }
+            })
+            new Vue({
+                el: '#one',
+                data: {
+                    vuefront: false,
+                },
+                computed: {
+                  changeone() {
+                      this.vuefront = !this.vuefront
+
+                      function sleep(time) {
+                          return new Promise((resolve) => setTimeout(resolve, time));
+                      }
+
+                      sleep(5000)
+                  },
+                },
+                methods: {
+                    change() {
+                        this.vuefront = !this.vuefront
+                    }
+                }
+            })
+            new Vue({
+                el: '#two',
+                data: {
+                    ok: false,
+                },
+                methods: {
+                    change() {
+                        this.ok = !this.ok
+                    }
+                }
+            })
+
+        </script>
+    </body>
+</html>
